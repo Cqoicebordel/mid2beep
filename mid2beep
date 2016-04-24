@@ -15,7 +15,7 @@ showbeep=YES
 showprogress=YES
 midifile=""
 
-usage=" $(basename "$0") [-c=n] [-h] [-i] [-p] [-q] [-s=n] -m file\n
+usage=" $(basename "$0") [-b] [-c=n] [-h] [-i] [-p] [-q] [-s=n] -m=file\n
 Program to play a midi track on the PC speaker/buzzer\n
  where:\n
 	\t\t-c Choose the MIDI channel you want to play (default : 1)\n
@@ -58,7 +58,7 @@ do
 		shift
 		;;
 		-h|--help)
-		echo -e	 $usage
+		echo -e $usage
 		exit
 		;;
 		*)
