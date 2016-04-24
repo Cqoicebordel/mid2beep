@@ -26,6 +26,6 @@ The program works the best with monophonic midi files. But you may be able to ha
 By default, the channel 1 is used. You can use the option `-c=n` or `--channel=n` to choose the channel you want.  
 To see the available channels, you might want to use the `-i` or `--info` option, that prints some infos about the file you are trying to use, including a list of all channels.  
 If you want to script it, all that output of infos might not suit you. You can disable the progress info with `-p` or `--noprogress`, and you can disable the output of the `beep` command using `-b` or `--hidebeep`. Or maybe, you are working on a piece, and so, you don't want to listen to each iteration, so you can disable the sound by using `-q` or `--quiet`.  
-Finally, maybe the tune doesn't have the right speed to your ears. It should automagically detect the right speed, but you might want to adjust the speed manually. In that case, use `-s=n` or `--speed=n`. Note that 'n' is note necessarily an integer (eg. 0.5 is half speed)
+Finally, maybe the tune doesn't have the right speed to your ears. It should automagically detect the right speed, but you might want to adjust the speed manually. In that case, use `-s=n` or `--speed=n`. Note that `n` isn't necessarily an integer (eg. 0.5 is half speed)
 
 When using polyphonic files, I used the brute force method to render them : play only the first of two notes that start at the same time. It can create issues of rythm, but hey, it's a good starting point :)
