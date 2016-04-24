@@ -90,7 +90,7 @@ header h2 {
 }
 
 .inner {
-  width: 620px;
+  width: 60%;
   margin: 0 auto;
 }
 
@@ -100,6 +100,9 @@ header h2 {
 
 #downloads {
   margin-bottom: 40px;
+  width:100%;
+  display : inline-flex;
+  justify-content: space-between;
 }
 
 a.button {
@@ -107,7 +110,6 @@ a.button {
   float: left;
   width: 179px;
   padding: 12px 8px 12px 8px;
-  margin-right: 14px;
   font-size: 15px;
   font-weight: bold;
   line-height: 25px;
@@ -332,7 +334,7 @@ footer a:hover {
   height: 0;
   clear: both;
   visibility: hidden;
-  content: '.';
+  /*content: '.';*/
 }
 
 .clearfix {display: inline-block;}
