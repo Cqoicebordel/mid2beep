@@ -8,7 +8,7 @@ Do whatever you want with this, just keep my pseudo associated with it.
 ## Prerequisite
 
 * Have a speaker in your PC. I'm not talking about the one to listen to music, but the one that beeps when you do something wrong.
-* Have `beep` and `midi2abc` installed (they should be in the repo of your Linux distro, the second under the name `abcmidi`)
+* Have `beep`, `midi2abc`, and `bc` installed (they should be in the repo of your Linux distro, the second under the name `abcmidi`)
 
 ## Install
 
