@@ -14,6 +14,8 @@ userspeed=1
 showbeep=YES
 showprogress=YES
 midifile=""
+langdef="C"
+numericdef="en_US.UTF-8"
 
 usage=" $(basename "$0") [-b] [-c=n] [-h] [-i] [-p] [-q] [-s=n] -m=file\n
 Program to play a midi track on the PC speaker/buzzer\n
@@ -91,7 +93,7 @@ tracks=()
 ticks=`od -An -j 12 -N 2 --endian=big -vd $midifile | xargs`
 bpm=`echo "${infos[@]}" | grep Tempo | awk '{print $2}'`
 factor=`echo "60000/($bpm*$ticks)" | bc -l`
-factor=`LANG=C printf '%.2f' $factor`
+factor=`LANG="${langdef}" LC_NUMERIC="${numericdef}" printf '%.2f' "$factor"`
 
 
 lastend=10000000
@@ -119,7 +121,7 @@ do
 		midinote=${arr[4]}
 		delay=`bc -l <<< "$userspeed*$factor*($first-$lastend)"`
 		note=`bc -l <<< "440*e((($midinote-69)/12)*l(2))"`
-		note=`LANG=C printf '%.2f' "$note"`
+		note=`LANG="${langdef}" LC_NUMERIC="${numericdef}" printf '%.2f' "$note"`
 		time=`bc -l <<< "$userspeed*$factor*($second-$first)"`
 		if (( $(bc <<< "$delay > 0") )); then
 			command="$command -D $delay"
