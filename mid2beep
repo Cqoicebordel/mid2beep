@@ -5,6 +5,9 @@ containsElement () {
   for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 0; done
   return 1
 }
+compute () {
+  echo "$1" | bc -l | awk '{printf "%f", $0}'
+}
 #IFS=$'\n'
 
 displayinfos=NO
@@ -93,7 +96,7 @@ tracks=()
 
 ticks=`od -An -j 12 -N 2 --endian=big -vd $midifile | xargs`
 bpm=`echo "${infos[@]}" | grep Tempo | awk '{print $2}'`
-factor=`echo "60000/($bpm*$ticks)" | bc -l`
+factor=`compute "60000/($bpm*$ticks)"`
 factor=`LANG="${langdef}" LC_NUMERIC="${numericdef}" printf '%.2f' "$factor"`
 
 
@@ -120,10 +123,10 @@ do
 	if [ "$track" = "$channel" ] && [ $lastfirst -ne $first ]; then
 		second=${arr[1]}
 		midinote=${arr[4]}
-		delay=`bc -l <<< "$userspeed*$factor*($first-$lastend)"`
-		note=`bc -l <<< "440*e((($midinote-69)/12)*l(2))"`
+		delay=`compute "$userspeed*$factor*($first-$lastend)"`
+		note=`compute "440*e((($midinote-69)/12)*l(2))"`
 		note=`LANG="${langdef}" LC_NUMERIC="${numericdef}" printf '%.2f' "$note"`
-		time=`bc -l <<< "$userspeed*$factor*($second-$first)"`
+		time=`compute "$userspeed*$factor*($second-$first)"`
 		if (( $(bc <<< "$delay > 0") )); then
 			command="$command -D $delay"
 		fi
