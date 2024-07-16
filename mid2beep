@@ -20,6 +20,7 @@ numericdef="en_US.UTF-8"
 usage=" $(basename "$0") [-b] [-c=n] [-h] [-i] [-p] [-q] [-s=n] -m=file\n
 Program to play a midi track on the PC speaker/buzzer\n
  where:\n
+	\t\t-b Do not display beep command\n
 	\t\t-c Choose the MIDI channel you want to play (default : 1)\n
 	\t\t-h Display this help\n
 	\t\t-i Display infos about the MIDI file (useful for finding channels)\n
