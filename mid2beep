@@ -6,7 +6,7 @@ containsElement () {
   return 1
 }
 compute () {
-  echo "$1" | bc -l | awk '{printf "%f", $0}'
+  echo "$1" | bc -l | awk '{printf "%.2f", $0}'
 }
 #IFS=$'\n'
 
@@ -97,7 +97,6 @@ tracks=()
 ticks=`od -An -j 12 -N 2 --endian=big -vd $midifile | xargs`
 bpm=`echo "${infos[@]}" | grep Tempo | awk '{print $2}'`
 factor=`compute "60000/($bpm*$ticks)"`
-factor=`LANG="${langdef}" LC_NUMERIC="${numericdef}" printf '%.2f' "$factor"`
 
 
 lastend=10000000
@@ -125,7 +124,6 @@ do
 		midinote=${arr[4]}
 		delay=`compute "$userspeed*$factor*($first-$lastend)"`
 		note=`compute "440*e((($midinote-69)/12)*l(2))"`
-		note=`LANG="${langdef}" LC_NUMERIC="${numericdef}" printf '%.2f' "$note"`
 		time=`compute "$userspeed*$factor*($second-$first)"`
 		if (( $(bc <<< "$delay > 0") )); then
 			command="$command -D $delay"
