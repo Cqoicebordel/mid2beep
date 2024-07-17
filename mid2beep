@@ -8,7 +8,7 @@ containsElement () {
 compute () {
   LANG=POSIX
   LC_NUMERIC=POSIX
-  echo "$1" | bc -l | awk '{printf "%.2f", $0}'
+  printf '%.2f' $(bc -l <<< "$1")
 }
 #IFS=$'\n'
 
