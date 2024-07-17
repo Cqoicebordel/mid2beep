@@ -6,6 +6,8 @@ containsElement () {
   return 1
 }
 compute () {
+  LANG=POSIX
+  LC_NUMERIC=POSIX
   echo "$1" | bc -l | awk '{printf "%.2f", $0}'
 }
 #IFS=$'\n'
@@ -17,8 +19,6 @@ userspeed=1
 showbeep=YES
 showprogress=YES
 midifile=""
-langdef="C"
-numericdef="en_US.UTF-8"
 
 usage=" $(basename "$0") [-b] [-c=n] [-h] [-i] [-p] [-q] [-s=n] -m=file\n
 Program to play a midi track on the PC speaker/buzzer\n
